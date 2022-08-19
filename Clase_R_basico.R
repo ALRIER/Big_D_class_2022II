@@ -31,6 +31,8 @@ archivo <- WideReleasesCount
 #VECTORES----------------------------------------
 a <- c(2,4,1,8)
 b <- c(2,2,2,2)
+c= c("perro","casa", 3)
+d=c(2,45,6,7)
 
 #Puedo poseer diferentes tipos de vectores
 vector_double <-c(1, 2.5, 4.5, 25)
@@ -42,11 +44,19 @@ vector_character <-c("Hola", "Mundo!", "4343434", "ssfkjdfdkjflkshfklj")
 
 #Length nos ayuda a conocer la longitud de cualquier vector. 
 length(vector_logical)
+f=c("mi mundo es bonito")
+length(f)
 length(vector_double)
 length(archivo)
 
 #Operaciones Vectorizadas-------------------------------------------------------------
-c<-a+b
+u=a+b
+print(u)
+u
+View(u)
+l=c(1,2,3)
+p=c(1)
+l+p
 c<-a/b
 #reciclaje de elementos en los vectores. 
 
@@ -70,10 +80,11 @@ ncol = es el número de columnas.
 byrow = es un valor lógico. Si es TRUE el vector que pasamos será ordenado por filas.
 dimnames = nombres asignado a filas y columnas.'''
 #Seguidamente se muestra un ejemplo de creación de una matriz:
-matriz <- matrix(1:12, nrow = 4)
+matriz=matrix(1:12, nrow = 4)
 matriz
+cordon=matrix(1:24, ncol = 6)
 #ejemplo de una matriz usando los argumentos previamente aprendidos. 
-automoviles <- matrix(
+automoviles = matrix(
   1:12,
   nrow = 4, #numero de filas
   byrow = TRUE, #ordenado por filas.
@@ -83,12 +94,11 @@ automoviles <- matrix(
   )
 )
 
-automoviles <- matrix(
-  1:12,
-  nrow = 4, 
-  byrow = TRUE,
+automoviles = matrix(
+  1:18,
+  nrow = 6,
   dimnames = list(
-    c("Blanco", "Rojo", "Negro", "Gris"),
+    c("Blanco", "Rojo", "Negro", "Gris", "Verde", "Azul"),
     c("Toyota", "Audi", "Nissan")
   )
 )
@@ -98,7 +108,9 @@ automoviles <- matrix(
 v1 <- c(1, 2, 3)
 v2 <- c(4, 5, 6)
 m1 <- cbind(v1, v2)
+m1 <- rbind(v1, v2)
 m1
+
 
 nombres <- c("Pedro","Maria","Juan")
 apellidos <- c("Gonzales", "Gomez", "vuelolindo")
