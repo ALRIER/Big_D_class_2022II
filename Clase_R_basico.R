@@ -117,7 +117,33 @@ Tarea.
 2.Unirlos en 3 tablas compuestas en ordenes diferentes. 
 3.Crear 4 ejemplos de matrices diferentes. 
 
+#Vectores
+v1=c(9,8,7,6)
+v2=c(1,2,3,4)
+v3=c(11,22,33,44)
+v4=c("mi","mamá","me","mima")
+v5=c("mi","perro","me","ama")
+v6=c("yo","amo","mi","perro")
 
+#vectores unidos
+u1=rbind(v1,v2)
+u2=cbind(v3,v4)
+u3=rbind(v5,v6)
+
+#Matrices
+
+Libardito=matrix(1:100, nrow = 10, byrow = T,
+                 dimnames = list(
+                    c("la","le","li","lo","lu","ma","me","mi","mo","mu"),
+                    c("Lío", "es", "el","perro","más","lindo","del","mundo","mundial","lol")
+                 )
+)
+
+Coopertino=matrix(1:8, ncol = 2, byrow = F, 
+                  dimnames = list(
+                     c("parque","casa","cama","sofá"),c("Dormir","Comer")))
+Khiarina=matrix(1:666, nrow = 66)
+Flawino=matrix(8:59, ncol = 9, byrow = T)
 
 
 #Listas-------------------------------------------------------------------
