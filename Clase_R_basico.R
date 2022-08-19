@@ -110,6 +110,16 @@ v2 <- c(4, 5, 6)
 m1 <- rbind(v1, v2)
 m1
 
+
+Tarea. 
+
+1.Generar cada uno 6 vectores diferentes. 
+2.Unirlos en 3 tablas compuestas en ordenes diferentes. 
+3.Crear 4 ejemplos de matrices diferentes. 
+
+
+
+
 #Listas-------------------------------------------------------------------
 lista <- list(1:3, "Ruben", pi, list(c(-1, -2), -5))
 lista
