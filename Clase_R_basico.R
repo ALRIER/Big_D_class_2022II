@@ -70,6 +70,12 @@ i=e*f
 
 View(i)
 
+mat=matrix(1:20,ncol = 4)
+paises=matrix(1:12,nrow = 3,byrow=TRUE, dimnames = list(c("francia","belgica","españa")))
+cosa=matrix(4:27,
+            nrow = 4,
+            dimnames =list(c("libro","radio","olla","123")))
+
 
 #Matrices--------------------------------------------------------------------
 #Para crear matrices utilizaremos la función matrix() , la sintaxis es la siguiente
