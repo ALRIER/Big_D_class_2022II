@@ -58,6 +58,16 @@ d<-a+b
 '''veremos que el resultado de ellos es la suma de las dos primeras partes del vector
 y R recicla la otra parte del vector para no perder datos'''
 
+a=c(1,4,6,8)
+b=c(9,8)
+c=c(8,8,8,8)
+d=c(1,4,6,3)
+e=c(1,9,5)
+f=c(8,6,3,8,9,5)
+g=a+c
+
+View(g)
+
 
 #Matrices--------------------------------------------------------------------
 #Para crear matrices utilizaremos la función matrix() , la sintaxis es la siguiente
