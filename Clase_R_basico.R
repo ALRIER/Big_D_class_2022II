@@ -1,4 +1,68 @@
+nombres <- c("Nick", "Danielle", "Karina", "San")
+edad <- c(21, 18, 22, 23)
+sexo <- c("H", "M", "M", "H")
+Marca <- c("sello rojo", "Mantial","Hatsu", "Heineken")
+Bebida <- c("café", "agua", "té", "cerveza")
+Número <- c(1L, 2L, 1L, 1L)
+twoo <- rbind(nombres,edad,sexo,Marca,Bebida,Número)
+twoo
 
+one <- data.frame("nombre" = c("Nick", "Danielle", "Karina", "San"),
+                  "edad" = c(21, 18, 22, 23),
+                  "sexo" = c("H", "M", "M", "H"),
+                  "Bebida favorita" = c("café", "agua", "té", "cerveza"),
+                  "Número de litros que bebe al día" = c(1L, 2L, 1L, 1L),
+                  "Marca favorita" = c("sello rojo", "Mantial","Hatsu", "Heineken"))
+
+
+nombres <- c("Nick", "Danielle", "Karina", "San")
+edad <- c(21, 18, 22, 23)
+sexo <- c("H", "M", "M", "H")
+Bebida <- c("café", "agua", "té", "cerveza")
+Marca <- c("sello rojo", "Mantial","Hatsu", "Heineken")
+Número <- c(1L, 2L, 1L, 1L)
+three <- rbind(nombres,edad,sexo,Bebida,Marca,Número)
+three
+
+
+kpop=matrix(
+   1:30,
+   nrow = 5, 
+   dimnames = list(
+      c("AESPA", "IVE", "KEP1ER", "ASTRO", "NCT"),
+      c(2022,2021,2020,2019,2018,2017)
+   )
+)
+
+celulares=matrix(
+   1:12,
+   nrow = 4, 
+   byrow = TRUE,
+   dimnames = list(
+      c("SAMSUNG", "HUAWEI", "APPLE", "MOTOROLA"),
+      c("56GB", "128GB", "256GB")
+   )
+)
+
+
+comida=matrix(
+   1:12,
+   nrow = 3, 
+   byrow = TRUE,
+   dimnames = list(
+      c("EL CORRAL", "BUFALO WINGS", "HOME BURGER"),
+      c("HAMBURGUESA", "HOT DOGS", "PAPAS", "MALTEADA")
+   )
+)
+
+ropa=matrix(
+   1:16,
+   nrow = 4, 
+   dimnames = list(
+      c("ARTURO CALLE", "ONLY", "KOAJ", "BOSSI"),
+      c("SACOS", "ZAPATOS", "CHAQUETAS", "BILLETERAS")
+   )
+)
 
 pkg <- function(pkg){
   new.pkg <- pkg[!(pkg %in% installed.packages()[, "Package"])]
