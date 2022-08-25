@@ -60,13 +60,13 @@ y R recicla la otra parte del vector para no perder datos'''
 
 a=c(1,4,6,8)
 b=c(9,8)
-c=c(8,8,8,8)
-d=c(1,4,6,3)
+c=c("blanco","gris","rojo","negro")
+d=c("purpura","cafe","verde","azul")
 e=c(1,9,5)
 f=c(8,6,3,8,9,5)
-g=a+b
-h=c-d
-i=e*f
+g=cbind(a,b)
+h=rbind(c,d)
+i=cbind(f,e)
 
 View(i)
 
