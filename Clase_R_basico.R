@@ -123,34 +123,37 @@ Tarea.
 3.Crear 4 ejemplos de matrices diferentes. 
 
 #Listas-------------------------------------------------------------------
+casa= list(c(1:45), "casa1", "casa2", list(c(2:39), 123))
+casa[1:4]
+
 lista <- list(1:3, "Ruben", pi, list(c(-1, -2), -5))
 lista
-
+ 
 #nombrar listas 
 '''se puede nombrar las listas como se desee una vez se han creado'''
-data_list <- list(c("enero","Febrero","Marzo"), #aquí creo las listas
+data_list = list(c("enero","Febrero","Marzo"), #aquí creo las listas
                   matrix(c(1,2,3,4,-1,9), nrow = 2),#asigno categirias a lo que hay dentro
                   list("Rojo",12.3))
 
-
+length(data_list)
 #con el comando names yo puedo nombrar los objetos dentro de una lista
 #el comando es names(introduzco el nombre del objeto a nombrar)
-names(data_list) <- c("listaA", "listaB", "listaC") #aquí nombro las listas
+names(data_list) = c("listaA", "listaB", "listaC") #aquí nombro las listas
 data_list #aquí imprimo el contenido de las listas
-
-listab.1 <-data_list$listaB #aquí extraigo la lista B en un objeto 
+listab.3 <-data_list$listac #aquí extraigo la lista B en un objeto 
 #nuevo que se llamará listab.1
+length(listab.3)
 
-archivo.1 <- archivo$`SONY PICTURES`
-archivo2 <- archivo$`PARAMOUNT PICTURES`
 
 tabla<-cbind(archivo.1,archivo2)
 
-print(data_list[3]) #así accedo a las listas e imprimo su contenido. 
+print(data_list[1:3]) #así accedo a las listas e imprimo su contenido. 
 
-data_list[4] <- "New element" #agrego un nuevo elemento a la lista (al final)
+data_list[5] <- "New element" #agrego un nuevo elemento a la lista (al final)
 print(data_list[4]) 
-
+length(data_list)
+#data_list[4]<-list(1,2) <- por que ??
+data_list[4]
 data_list[4] <- NULL #remover el elemento 
 print(data_list[4]) #se elimina el último elemento agregado.
 
@@ -161,27 +164,30 @@ print(data_list[3])
 num_list <- list(1,2,3,4,5) #creo una lista 1
 day_list <- list("Mon","Tue","Wed", "Thurs", "Fri") #creo la lista 2
 merge_list <- c(num_list, day_list) #las mezclo
+length(merge_list)
 merge_list #llamo al producto
-
-'''las listas se mezclan quedando una lista más grande con todo el código y todo
-el contenido de las que antes eran dos listas separadas. '''
+w=as.data.frame(merge_list)
+e=as.matrix(merge_list)
+V=as.vector(merge_list)
+# '''las listas se mezclan quedando una lista más grande con todo el código y todo
+# el contenido de las que antes eran dos listas separadas. '''
 
 #data.frame()-------------------------------------------------------------
 #IMPORTANTE
-nombre <- c("Juan", "Ruben", "Daniel", 0) 
+nombre <- c("Juan", "Ruben", "Daniel", "Danny") 
 apellido <- c("Sanchez", "Garcia", "Sancho", "Alfara") 
 fecha_nacimiento <- c("1976-06-14", "1974-05-07", "1958-12-25", "1983-09-19")
 sexo <- c("HOMBRE", "MUJER", "HOMBRE", "HOMBRE")
 nro_hijos <- c(1, 2, 3, 4) 
 
-censo <- data.frame(nombre, apellido, fecha_nacimiento, sexo, nro_hijos) 
-#ojo al error... arguments imply differing number of rows: 3,4. 
+censo = data.frame(nombre, apellido, fecha_nacimiento, sexo, nro_hijos) 
+#ojo al error... argumentos imply differing number of rows: 3,4. 
 
 
 
-'''se debe tener en cuenta que el dataframe está conformoado por un número 
-de vectores, los cuales para poder realizar operaciones aritméticas de adeción
-mezcla u otra operación deben poseer un número igual de datos'''
+# se debe tener en cuenta que el dataframe está conformoado por un número 
+# de vectores, los cuales para poder realizar operaciones aritméticas de adeción
+# mezcla u otra operación deben poseer un número igual de datos
 
 int_vec <- c(1,2,3) #creo 3 vectores un con enteros, otro con caracteres 
 char_vec <- c("a", "bsvjkzlkvdnl<zkjvdnl", "zdvzxvzxbc")# y uno con boleanos. 
@@ -189,8 +195,9 @@ bool_vec <- c(TRUE, TRUE, FALSE)
 
 data_frame <- data.frame(int_vec, char_vec,bool_vec)#crearé mi dataframe
 
+sa=data_frame$char_vec
 #Nuevamente
-employee_data <- data.frame(
+employee_data = data.frame(
   employee_id = c (1:5), #defino un elemento compueso por un conteo de 1 a 5
   employee_name = c("Jaime","Henrry","julia","Jimmy","Oliver"), #5 nombres
   sal = c(642.3,535.2,681.0,739.0,925.26), #5 "salarios" hipoteticos
