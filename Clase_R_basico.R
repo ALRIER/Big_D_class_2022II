@@ -119,6 +119,15 @@ data_list <- list(c("enero","Febrero","Marzo"), #aquí creo las listas
                   matrix(c(1,2,3,4,-1,9), nrow = 2),#asigno categirias a lo que hay dentro
                   list("Rojo",12.3))
 
+ejercicio=list(c("rojo","amarillo","azul"),
+           matrix(c(1,3,6,73,9,8),nrow = 3),
+           c(5,8,3,8,9),
+           c(78,3,78,2),
+           c(1:20)
+           )
+length(ejercicio)
+names(ejercicio)=c("objeto1","objeti2","objeto3","objeto4","objeto5")
+
 
 #con el comando names yo puedo nombrar los objetos dentro de una lista
 #el comando es names(introduzco el nombre del objeto a nombrar)
