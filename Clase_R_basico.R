@@ -192,16 +192,41 @@ m1 <- rbind(v1, v2)
 m1
 
 #Listas-------------------------------------------------------------------
+casa= list(c(1:45), "casa1", "casa2", list(c(2:39), 123))
+casa[1:4]
+
 lista <- list(1:3, "Ruben", pi, list(c(-1, -2), -5))
 lista
 
+actividad = list(c("aespa","ive","ateez","dd"),
+                 matrix(c(2022,2021,2020,2019), nrow = 4),
+                 list("savage","afterlike","dejavu"),
+                 matrix(c("A1","A2","B1","B2"),nrow = 2),
+                 list("debut","single","comeback"))
+
+length(actividad)
+
+names(actividad)=c("objeto1","objeto2", "objeto3","objeto4", "objeto5")
+actividad                 
+
+actividad$objeto1
+t=actividad$objeto1
+t2=actividad$objeto2
+
+   
+length(t)
+length(t2)
+t3=cbind(t,t2)
+
+actividad[6]
+
 #nombrar listas 
 '''se puede nombrar las listas como se desee una vez se han creado'''
-data_list <- list(c("enero","Febrero","Marzo"), #aquí creo las listas
+data_list = list(c("enero","Febrero","Marzo"), #aquí creo las listas
                   matrix(c(1,2,3,4,-1,9), nrow = 2),#asigno categirias a lo que hay dentro
                   list("Rojo",12.3))
 
-
+length(data_list)
 #con el comando names yo puedo nombrar los objetos dentro de una lista
 #el comando es names(introduzco el nombre del objeto a nombrar)
 names(data_list) <- c("listaA", "listaB", "listaC") #aquí nombro las listas
@@ -230,7 +255,11 @@ print(data_list[3])
 num_list <- list(1,2,3,4,5) #creo una lista 1
 day_list <- list("Mon","Tue","Wed", "Thurs", "Fri") #creo la lista 2
 merge_list <- c(num_list, day_list) #las mezclo
+length(merge_list)
 merge_list #llamo al producto
+w=as.data.frame(merge_list)
+e=as.matrix(merge_list)
+v=as.vector(merge_list)
 
 '''las listas se mezclan quedando una lista más grande con todo el código y todo
 el contenido de las que antes eran dos listas separadas. '''
@@ -258,6 +287,7 @@ bool_vec <- c(TRUE, TRUE, FALSE)
 
 data_frame <- data.frame(int_vec, char_vec,bool_vec)#crearé mi dataframe
 
+sa=data_fr
 #Nuevamente
 employee_data <- data.frame(
   employee_id = c (1:5), #defino un elemento compueso por un conteo de 1 a 5
@@ -266,8 +296,10 @@ employee_data <- data.frame(
   join_date = as.Date(c("2013-02-04", "2017-06-21", "2012-11-14", "2018-05-19","2016-03-25"))
 )
 
+
 #que tipo de variables componen mi Dataframe?
 str(employee_data)
+
 
 #extraigo información del Fataframe 
 a<- employee_data$sal
