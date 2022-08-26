@@ -203,7 +203,7 @@ employee_data = data.frame(
   sal = c(642.3,535.2,681.0,739.0,925.26), #5 "salarios" hipoteticos
   join_date = as.Date(c("2013-02-04", "2017-06-21", "2012-11-14", "2018-05-19","2016-03-25"))
 )
-
+.
 #que tipo de variables componen mi Dataframe?
 str(employee_data)
 
