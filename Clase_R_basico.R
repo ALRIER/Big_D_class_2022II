@@ -102,6 +102,12 @@ tabla1=cbind(colores,numeros)
 tabla2=rbind(paises,random)
 tabla3=cbind(animales,num)
 
+col=matrix(1:12,
+           nrow = 3,
+          byrow = FALSE,
+          dimnames = list(random, animales)
+          )
+
 #cbind(), rbind() agregar filas y columnas organizandolas de forma manual. 
 
 v1 <- c(1, 2, 3)
