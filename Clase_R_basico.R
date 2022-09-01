@@ -97,6 +97,10 @@ numeros=c(1,2,3)
 paises=c("co", "arg","fr")
 animales=c("pajaro","perro","gato")
 random=c(5:8)
+num=c(7,9,0)
+tabla1=cbind(colores,numeros)
+tabla2=rbind(paises,random)
+tabla3=cbind(animales,num)
 
 #cbind(), rbind() agregar filas y columnas organizandolas de forma manual. 
 
