@@ -7,6 +7,8 @@ Número <- c(1L, 2L, 1L, 1L)
 twoo <- rbind(nombres,edad,sexo,Marca,Bebida,Número)
 twoo
 
+su=as.list(twoo)
+
 one <- data.frame("nombre" = c("Nick", "Danielle", "Karina", "San"),
                   "edad" = c(21, 18, 22, 23),
                   "sexo" = c("H", "M", "M", "H"),
@@ -24,7 +26,6 @@ Número <- c(1L, 2L, 1L, 1L)
 three <- rbind(nombres,edad,sexo,Bebida,Marca,Número)
 three
 
-
 kpop=matrix(
    1:30,
    nrow = 5, 
@@ -33,6 +34,9 @@ kpop=matrix(
       c(2022,2021,2020,2019,2018,2017)
    )
 )
+
+noo=as.data.frame(kpop)
+naa=as.list(kpop)
 
 celulares=matrix(
    1:12,
@@ -44,6 +48,8 @@ celulares=matrix(
    )
 )
 
+nii=as.data.frame(celulares)
+nee=as.list(celulares)
 
 comida=matrix(
    1:12,
