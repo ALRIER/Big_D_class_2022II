@@ -92,6 +92,12 @@ automoviles <- matrix(
   )
 )
 
+colores=c("Rojo","negro","azul")
+numeros=c(1,2,3)
+paises=c("co", "arg","fr")
+animales=c("pajaro","perro","gato")
+random=c(5:8)
+
 #cbind(), rbind() agregar filas y columnas organizandolas de forma manual. 
 
 v1 <- c(1, 2, 3)
