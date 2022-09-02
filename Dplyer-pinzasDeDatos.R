@@ -7,7 +7,14 @@ head(gapminder)
 
 head(archivo)
 view(archivoo)
-# filtrar datos por pais sin %>%  == >=  
+# filtrar datos por pais sin %>%  == >= 
+# hay unos comandos que son muy importantes en R == significan igual
+# >= este simbolo se usa cuando se quieran usar operadores logicos de mayoria o igualdad
+# <= menor o igual
+# != significa diferente de en R
+# este solo funciona en tipyverse: a%in%b significa cuando a está compuesto dentro de b
+# fico%in%b
+h=filter(fico, fico$screenName=='joselosuarez')
 f<-filter(gapminder, country == 'Mexico')
 #extraer todos los registros de todos los registros de sony para el año2018
 filtro1<-filter(gapminder, country == '')
