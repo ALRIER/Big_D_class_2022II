@@ -4,7 +4,6 @@ pkg <- function(pkg){
     install.packages(new.pkg, dependencies = TRUE)
   sapply(pkg, require, character.only = TRUE)
 }
-
 packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
               "NbClust","tidyr","forecast","semTools","corrplot",
               "corrr","haven","psych","dplyr","lavaan","readr","cvms","tm",
@@ -15,7 +14,6 @@ packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
               "mscstexta4r","plyr","psych","corrr","latticeExtra",
               "semPlot","lavaan","readr","lme4","sjPlot","gvlma","Rcmdr",
               "tidymodels","caret","lmtest","gapminder","png","rtweet","knitr")
-
 pkg(packages)
 
 #Cómo abrir un archivo desde el equipo?
