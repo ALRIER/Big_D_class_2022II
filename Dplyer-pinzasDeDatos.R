@@ -4,22 +4,19 @@
 #rectifico que hayan quedado bien cargados
 data("gapminder")
 head(gapminder)
-
-head(archivo)
-view(archivoo)
 # filtrar datos por pais sin %>%  == >=  
 f<-filter(gapminder, country == 'Mexico')
 #extraer todos los registros de todos los registros de sony para el año2018
 filtro1<-filter(gapminder, country == '')
 # filtrar datos por pais
 # para hacer %>% en RStudio (cntrl + shift + M)
-f<- gapminder %>%
+f= gapminder %>%
    filter(country == 'Mexico')
 
-continentes<-gapmider %>% 
+continentes=gapmider %>% 
    filter(continent == 'Asia')
 # filtrar datos por año
-año<- gapminder %>% 
+año= gapminder %>% 
    filter(year == '1952')
 # filtrar paises con esperanza de vida mayor o igual a 40 y el año en 2002
 gapminder %>% 
@@ -28,18 +25,58 @@ gapminder %>%
 # hacer resumenes de datos---------------------------------------------
 
 # cantidad de paises en Asia para el año 2007 
-paises<-gapminder %>% 
+paises=gapminder %>% 
    filter(continent == 'Asia',
           year == 2007) %>%
    summarise(conteo = n())
 
 # maxima esparanza de vida
-q<-gapminder %>% 
+q=gapminder %>% 
    summarise(max(lifeExp))
 # agrupando esperanza de vida promedio por año
 promedio<-gapminder %>% 
    group_by(year) %>% 
    summarise(mean(lifeExp))
+#Sumarios de datos. 
+library(dplyr)
+library(dslabs)
+library(NHANES)
+data(NHANES)
+data(heights)
+data(murders)
+
+sj = heights %>%
+   filter(sex == "Female") %>%
+   summarize(average = mean(height), standard_deviation = sd(height))
+#Resúmenes múltiples. 
+heights %>% 
+   filter(sex == "Female") %>%
+   summarize(median = median(height), minimum = min(height), 
+             maximum = max(height))
+#cuartiles
+heights %>% 
+   filter(sex == "Female") %>%
+   summarize(median_min_max = quantile(height, c(0.5, 0, 1)))
+
+#agrupado de datos y sumario de datos
+heights %>%
+   group_by(sex) %>%
+   summarize(average = mean(height), standard_deviation = sd(height))
+
+#vamos a organizar la ifnromación según algun dato en especifico
+murders %>%
+   arrange(population) %>%
+   head()
+
+#podeos ordenar datos por más de 1 categoría. 
+murders %>%
+   arrange(region, rate) %>%
+   head()
+
+
+
+
+
 
 #dyplyer más a profundidad----------------------------------------------------
 archivo %>%
