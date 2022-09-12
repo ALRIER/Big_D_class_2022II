@@ -138,4 +138,54 @@ Ventasaltas1= forbes %>%
    filter(pais == "United Kingdom") %>%
    filter(ventas >=100)
 
+Ventasbajas1= forbes %>% 
+   filter(pais == "United Kingdom") %>%
+   filter(ventas <=10)
 
+filtro2= forbes %>%
+   filter(pais == "Poland")
+
+Estadisticos2= forbes %>% 
+   filter(pais == "Poland") %>%
+   summarize(median = median(ventas), minimum = min(ventas), 
+             maximum = max(ventas))
+
+Ventasaltas2= forbes %>% 
+   filter(pais == "Poland") %>%
+   filter(ventas >=20)
+
+Ventasbajas2= forbes %>% 
+   filter(pais == "Poland") %>%
+   filter(ventas <=7)
+
+filtro3= forbes %>%
+   filter(pais == "South Korea")
+
+Estadisticos3= forbes %>% 
+   filter(pais == "South Korea") %>%
+   summarize(median = median(ventas), minimum = min(ventas), 
+             maximum = max(ventas))
+
+Ventasaltas3= forbes %>% 
+   filter(pais == "South Korea") %>%
+   filter(ventas >=170)
+
+Ventasbajas3= forbes %>% 
+   filter(pais == "South Korea") %>%
+   filter(ventas <=10)
+
+filtro4= forbes %>%
+   filter(pais == "Thailand")
+
+Estadisticos4= forbes %>% 
+   filter(pais == "Thailand") %>%
+   summarize(median = median(ventas), minimum = min(ventas), 
+             maximum = max(ventas))
+
+Ventasaltas4= forbes %>% 
+   filter(pais == "Thailand") %>%
+   filter(ventas >=35)
+
+Ventasbajas4= forbes %>% 
+   filter(pais == "Thailand") %>%
+   filter(ventas <=5)
