@@ -190,3 +190,4 @@ Ventasbajas4= forbes %>%
    filter(pais == "Thailand") %>%
    filter(ventas <=5)
 
+:)
