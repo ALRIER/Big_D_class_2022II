@@ -123,6 +123,19 @@ gapminder %>%
       )
    )
 
+forbes <- read.csv("C:/Users/andrs/OneDrive/Escritorio/FG2000_2021.csv", sep=";")
+#forbes es una lista de rakings, nombres (empresas), paises, ventas, ganancias, activos, y valor.
+# podría sacar todo lo de un país. 
+filtro1= forbes %>%
+   filter(pais == "United Kingdom")
 
+Estadisticos1= forbes %>% 
+   filter(pais == "United Kingdom") %>%
+   summarize(median = median(ventas), minimum = min(ventas), 
+             maximum = max(ventas))
+
+Ventasaltas1= forbes %>% 
+   filter(pais == "United Kingdom") %>%
+   filter(ventas >=100)
 
 
