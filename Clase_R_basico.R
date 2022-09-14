@@ -21,6 +21,9 @@ packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
 
 pkg(packages)
 
+library(tidyverse)
+
+
 #Cómo abrir un archivo desde el equipo?
 #Escribo el comando read_csv('dentro la ruta de mi archivo')
 archivo <- read_csv('/home/alrier/Documentos/movies datasets/WideReleasesCount.csv')
