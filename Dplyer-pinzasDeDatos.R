@@ -16,6 +16,7 @@ filtro1<-filter(gapminder, country == '')
 f<- gapminder %>%
    filter(country == 'Mexico')
 
+
 continentes<-gapmider %>% 
    filter(continent == 'Asia')
 # filtrar datos por año
@@ -118,4 +119,42 @@ gapminder %>%
 
 
 
+#TALLER DPLYER
 
+Peli_Ingles = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$Language == 'English')
+
+Info_pelisIngles = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$Language == 'English') %>%
+   summarise(Total = n(), 
+             Mas_antigua = min(amazon_prime_movies$`Year of Release`),
+             Mas_nueva = max(amazon_prime_movies$`Year of Release`))
+
+Peli_Hiindi = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$Language == 'Hindi')
+
+Info_pelisHindi = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$Language == 'Hindi') %>%
+   summarise(Total = n(), 
+             Mas_antigua = min(amazon_prime_movies$`Year of Release`),
+             Mas_nueva = max(amazon_prime_movies$`Year of Release`))
+
+Peli_52 = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$`Year of Release` == '1952')
+
+Promedio52 = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$`Year of Release` == '1952') %>% 
+   summarise(Total = n(), 
+             promedio_duración = median(amazon_prime_movies$`Running Time`) )
+
+Peli_21 = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$`Year of Release` == '2021')
+
+Promedio21 = amazon_prime_movies %>% 
+   filter(amazon_prime_movies$`Year of Release` == '2021') %>% 
+   summarise(Total = n(), 
+             promedio_duración = median(amazon_prime_movies$`Running Time`) )
+
+
+                           
+#FIN DEL TALLER DE DYPLYER 
