@@ -2,9 +2,20 @@
 #cargaré los datos de la libreria
 
 #rectifico que hayan quedado bien cargados
+install.packages(gapminder)
+library(gapminder)
 data("gapminder")
 head(gapminder)
-# filtrar datos por pais sin %>%  == >=  
+# filtrar datos por pais sin %>%  == >= 
+filtroQ =filter(fico, fico$screenName == "actasaz")
+filtroQ =filter(fico,
+                fico$screenName == "condicion")
+
+filtroN = fico %>% 
+   filter(screenName =="actasaz")%>% 
+   filter(retweetCount > 342)
+
+
 f<-filter(gapminder, country == 'Mexico')
 #extraer todos los registros de todos los registros de sony para el año2018
 filtro1<-filter(gapminder, country == '')
@@ -18,6 +29,11 @@ continentes=gapmider %>%
 # filtrar datos por año
 año= gapminder %>% 
    filter(year == '1952')
+
+continente=gapminder %>% 
+   filter(continent== "Europe") %>% 
+   filter(year >= "2000")
+
 # filtrar paises con esperanza de vida mayor o igual a 40 y el año en 2002
 gapminder %>% 
    filter(lifeExp <=40,
@@ -49,14 +65,16 @@ sj = heights %>%
    filter(sex == "Female") %>%
    summarize(average = mean(height), standard_deviation = sd(height))
 #Resúmenes múltiples. 
-heights %>% 
+sumarios=heights %>% 
    filter(sex == "Female") %>%
    summarize(median = median(height), minimum = min(height), 
              maximum = max(height))
-#cuartiles
-heights %>% 
-   filter(sex == "Female") %>%
-   summarize(median_min_max = quantile(height, c(0.5, 0, 1)))
+#cuartiles----------
+gap %>% view()
+
+gap %>% 
+   filter(continent == 'Europe') %>%
+   summarize(cuartiles = quantile(gap$life_expectancy, c(0, 0.5, 1)))
 
 #agrupado de datos y sumario de datos
 heights %>%
@@ -64,9 +82,15 @@ heights %>%
    summarize(average = mean(height), standard_deviation = sd(height))
 
 #vamos a organizar la ifnromación según algun dato en especifico
-murders %>%
-   arrange(population) %>%
-   head()
+#ascendente
+gap2=gap %>%
+   arrange(sort(life_expectancy))
+#descendente
+gap2=gap %>%
+   arrange(desc(life_expectancy))
+#aleatorio
+gap2=gap %>%
+   arrange(sort(life_expectancy))
 
 #podeos ordenar datos por más de 1 categoría. 
 murders %>%
