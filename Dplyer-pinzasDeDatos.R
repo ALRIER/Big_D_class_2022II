@@ -2,6 +2,8 @@
 #cargaré los datos de la libreria
 
 #rectifico que hayan quedado bien cargados
+library(gapminder)
+data("gapminder")
 data("gapminder")
 head(gapminder)
 
@@ -158,3 +160,22 @@ Promedio21 = amazon_prime_movies %>%
 
                            
 #FIN DEL TALLER DE DYPLYER 
+
+#TALLER DPLYER 2
+
+Ventas_del_Juego_de_Loter_a_Tradicional %>%
+   summarize(cuartiles = quantile(`Total Fracciones Vendidas`, c(0, 0.25, 0.5, 1)))
+
+Ventas_del_Juego_de_Loter_a_Tradicional %>% 
+   group_by(`Total Ventas`)
+
+Ventas_del_Juego_de_Loter_a_Tradicional %>% 
+   group_by(`Total Ventas`, Año) %>% 
+   arrange(`Total Fracciones Vendidas`)
+
+Ejemplo1 = Ventas_del_Juego_de_Loter_a_Tradicional %>% 
+   group_by(`Total Ventas`, Año) %>% 
+   arrange(desc(`Total Fracciones Vendidas`)) %>% 
+   mutate(promedio1 = mean(`Total Ventas`))
+
+
