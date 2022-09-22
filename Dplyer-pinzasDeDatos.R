@@ -5,6 +5,15 @@
 data("gapminder")
 head(gapminder)
 
+library(gapminder)
+library(dplyr)
+library(dslabs)
+library(NHANES)
+data(NHANES)
+data(heights)
+data(murders)
+data(gapminder)
+
 head(archivo)
 view(archivoo)
 # filtrar datos por pais sin %>%  == >=  
