@@ -16,6 +16,9 @@ packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
               "tidymodels","caret","lmtest","gapminder","png","rtweet","knitr")
 pkg(packages)
 
+library("tidyverse")
+library("rtweet")
+library("twitteR")
 #Cómo abrir un archivo desde el equipo?
 #Escribo el comando read_csv('dentro la ruta de mi archivo')
 archivo <- read_csv('/home/alrier/Documentos/movies datasets/WideReleasesCount.csv')
