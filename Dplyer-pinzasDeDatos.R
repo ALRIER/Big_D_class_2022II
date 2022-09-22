@@ -94,27 +94,29 @@ gap2=gap %>%
 
 #podeos ordenar datos por más de 1 categoría. 
 murders %>%
-   arrange(region, rate) %>%
+   arrange(region, total) %>%
    head()
 
+murders %>%
+   arrange(region, desc(total)) %>%
+   head()
 
-
-
-
-
+murders %>%
+   arrange(region, sort(total)) %>%
+   head()
 #dyplyer más a profundidad----------------------------------------------------
-archivo %>%
-   group_by(YEAR) %>%
-   summarize(mean(UNIVERSAL))
+nuevo=gap %>%
+   group_by(year) %>%
+   filter(country=='Canada')
 
-z<-gapminder %>%
+gapminder %>%
    group_by(continent, year) %>%
-   summarize(sum(lifeExp))
+   summarize(sum(life_expectancy))
 
 z1<- gapminder%>%
    group_by(year) %>%
    filter(continent == 'Asia') %>%
-   mutate(asiaxaño = m(pop))
+   mutate(asiaxaño = mean(life_expectancy))
 
 #función mutate
 z1<- archivo %>%
@@ -124,12 +126,12 @@ z1<- archivo %>%
 
 
 # el objeto está comprendido en. 
-employee_new_data %>%
-   filter(employee_name %in% c("Amanda")) 
+t=gap %>%
+   filter(country%in% "Aruba") 
 
 #El objeto NO esta comprendido en. 
-employee_new_data %>%
-   filter(!employee_name %in% c("Amanda"))
+t=gap %>%
+   filter(!country%in% "Aruba")
 
 #un filtro de todos los años que tengan 0, despues haga un mutate en una
 #columna nueva y guardelos seguncontengan o no el comando que yo le indique. 
@@ -140,42 +142,28 @@ ceros<-archivo_tible %>%
 
 
 #comando across ---------------------------------------------------
-'''nos ayuda a aplicar un mismo comando sobre diferentes lineas de codigo o sobre una variable especifica'''
-
-'''si quiero sacar el minimo, maximo y media de la esperanza de vida, del producto
-percapital del pais y de la vairbale llmada gdp, pordia hacerlo asi:'''
 
 gapminder %>%
-   group_by(year) %>%
    summarise(
-      
-      # Esperanza de vida
-      lifeExp_min = min(lifeExp),
-      lifeExp_max = max(lifeExp),
-      lifeExp_mean = mean(lifeExp),
-      
-      # Poblacion
-      pop_min = min(pop),
-      pop_max = max(pop),
-      pop_mean = mean(pop),
-      
-      # GDP
-      gpd_min = min(gdpPercap),
-      gpd_max = max(gdpPercap),
-      gpd_mean = mean(gdpPercap)
-      
+      lifeExp_min = min(life_expectancy),
+      lifeExp_max = max(life_expectancy),
+      lifeExp_mean = mean(life_expectancy),
+      pop_min = min(population),
+      pop_max = max(population),
+      pop_mean = mean(population),
+      gpd_min = min(gdp),
+      gpd_max = max(gdp),
+      gpd_mean = mean(gdp)
    )
 
 '''o podria hacerlo mucho mas facil, asi:'''
+gap %>%
+   group_by(year)%>%
+   summarise(across(c(life_expectancy,population, gdp),
+                    list(min, max, mean)))
 
-gapminder %>%
-   group_by(year) %>%
-   summarise(
-      across(
-         c(lifeExp,pop, gdpPercap), 
-         list(min, max, mean)
-      )
-   )
+gap %>% summarise(across(starts_with ("Canada")))
+                            
 
 
 
