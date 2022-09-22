@@ -1,9 +1,9 @@
 #TRABAJANDO CON TWITTER-----------------------------------------------
 
-'''primero que nada hay que acceder a la APLI de twitter para tener acceso a 
-toda la información de la plataforma, una vez ahí debemos entrar a la aplicación
-de las apps que tenemos desarrolladas, debemos buscar los keys y credenciales
-de las apps que trabajaremos.'''
+# primero que nada hay que acceder a la API de twitter para tener acceso a
+# toda la información de la plataforma, una vez ahí debemos entrar a la aplicación
+# de las apps que tenemos desarrolladas, debemos buscar los keys y credenciales
+# de las apps que trabajaremos.
 
 setup_twitter_oauth("6gMch1lkCfn3W5PZho3X4jh8W",#api key
                     "eBosfeWmQVBLQ87WiVMaRXousYRdyOkyhLkvCUzw7ioz0EMCWY",#api secret key
