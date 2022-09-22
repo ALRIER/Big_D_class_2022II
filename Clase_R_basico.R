@@ -22,7 +22,8 @@ packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
 pkg(packages)
 
 library(tidyverse)
-
+library(twitteR)
+library(rtweet)
 
 #Cómo abrir un archivo desde el equipo?
 #Escribo el comando read_csv('dentro la ruta de mi archivo')
