@@ -123,6 +123,8 @@ gapminder %>%
       )
    )
 
+# taller 1
+
 forbes <- read.csv("C:/Users/andrs/OneDrive/Escritorio/FG2000_2021.csv", sep=";")
 #forbes es una lista de rakings, nombres (empresas), paises, ventas, ganancias, activos, y valor.
 # podría sacar todo lo de un país. 
@@ -190,4 +192,24 @@ Ventasbajas4= forbes %>%
    filter(pais == "Thailand") %>%
    filter(ventas <=5)
 
-:)
+# fin taller 1
+# taller 2
+
+cuartil = forbes %>% 
+   filter(pais == 'China') %>%
+   summarize(cuartiles = quantile(activos, c(0, 0.5, 1)))
+
+forbes %>%
+   group_by("paises") %>%
+   summarize(average = mean(ganancias), standard_deviation = sd(ganancias))
+
+forbes %>% 
+   group_by("paises") %>% 
+   arrange(ventas, ganancias,activos)
+
+ascendente = forbes %>%
+   arrange(sort(ventas))
+
+descendente = forbes %>% 
+   arrange(desc(ventas))
+
