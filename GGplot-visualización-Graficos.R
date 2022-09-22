@@ -1,6 +1,14 @@
 #GGPLOT---------------------
 #now lets learn the ggplot command to visualize data and learn
 #how to use it in a propper way. 
+library(gapminder)
+library(dplyr)
+library(dslabs)
+library(NHANES)
+data(NHANES)
+data(heights)
+data(murders)
+data(gapminder)
 
 plot(gapminder$life_expectancy)
 
