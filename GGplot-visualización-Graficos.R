@@ -9,24 +9,31 @@ data(NHANES)
 data(heights)
 data(murders)
 data(gapminder)
-
+#MAL
 plot(gapminder$life_expectancy)
-
+#MAl
 plot(gap$fertility)
+#Buscar NA
+sum(is.na(gapminder$infant_mortality))
+#remplazar NA x 0
+gapminder$infant_mortality[is.na(gapminder$infant_mortality)]<-0
 
 hist(gap$year)
 hist(gap$fertility)
 
 boxplot(gap$population)
 boxplot(gap$year)
-
+mtcars
+install.packages("psych")
+Library("psych")
+library("tidyverse")
 plot(mtcars)
 corPlot(cor(mtcars))
 #Método 1
 mtcars %>% 
    cor() %>% 
    corrplot(method = "circle",
-            title = "method = 'circle'",
+            title = "circulos",
             tl.pos = "n", mar = c(2, 1, 3, 1))
 #Método 2
 mtcars %>% 
@@ -55,7 +62,7 @@ ggplot(data = murders)
 #???
 murders %>% ggplot()
 #guardemos el gráfico en un objeto y veamos su clase
-p <- ggplot(data = murders)
+p = ggplot(data = murders)
 class(p)
 print(p)
 p
@@ -63,7 +70,7 @@ p
 #geom_X ---> X será la geometría a usar en el gráfico. 
 #ejemplo---> geom_point()
 
-#ESTÉTICA-------------
+#ESTÉTICA------------- aesthetics
 murders %>% 
    ggplot() +
    geom_point(aes(x = population, y = total))
@@ -92,7 +99,7 @@ p + geom_point(size = 3) +
 #Vamos a definir nuevas características locales...
 #simplemente declaramos nuevos parámetros. 
 p + geom_point(size = 3) +
-   geom_text(aes(x = 10, y = 800, label = "Hello there!"))
+   geom_text(aes(x = 10, y = 800, label = ":)"))
 
 #Escalas------------
 # Primero, las escalas que queremos están en escala logarítmica. 
