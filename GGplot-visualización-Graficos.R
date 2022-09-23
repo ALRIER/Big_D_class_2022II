@@ -2,24 +2,43 @@
 #now lets learn the ggplot command to visualize data and learn
 #how to use it in a propper way. 
 
+library(gapminder)
+library(dplyr)
+library(dslabs)
+library(NHANES)
+library("psych")
+library("tidyverse")
+data(NHANES)
+data(heights)
+data(murders)
+data(gapminder)
+
+
+
 plot(gapminder$life_expectancy)
 
 plot(gap$fertility)
 
-hist(gap$year)
-hist(gap$fertility)
+is.na(gapminder$year) # si es falso significa que no hay NA
 
-boxplot(gap$population)
-boxplot(gap$year)
+sum(is.na(gapminder$infant_mortality))
 
+#para cambiar NA a otro valor 
+
+hist(gapminder$year)  
+hist(gapminder$fertility)
+
+boxplot(gapminder$population)
+boxplot(gapminder$year)
+mtcars
 plot(mtcars)
-corPlot(cor(mtcars))
+corPlot(cor(mtcars)) #hagame un grafico de correlacion a una orden que es de correlación de mtcars
 #Método 1
 mtcars %>% 
    cor() %>% 
-   corrplot(method = "circle",
-            title = "method = 'circle'",
-            tl.pos = "n", mar = c(2, 1, 3, 1))
+   corPlot(method = "circle",
+            title = "circulos",
+           tl.pos= "n", mar = c(2, 1, 3, 1)) #vdar f1 para ver los datos de lo que uno puede hacer
 #Método 2
 mtcars %>% 
    cor() %>% 
@@ -36,18 +55,20 @@ mtcars %>%
 #Método 4
 mtcars %>% 
    cor() %>% 
-   corrplot(method = "square",
+   corrPlot(method = "square",
             title = "method = 'square'")
 #ggplot básico
-library(ggplot2)
+library("ggplot2") #esta libreria se usa solo para graficos
 #el plot más básico. 
+dev.off() #cuando la pantalla de gráficos genere un error hay que escribir eso
+graphics.off()
 ggplot()
 #???
 ggplot(data = murders)
 #???
 murders %>% ggplot()
 #guardemos el gráfico en un objeto y veamos su clase
-p <- ggplot(data = murders)
+p = ggplot(data = murders)
 class(p)
 print(p)
 p
@@ -62,12 +83,12 @@ murders %>%
 
 #También podemos definir el objeto P que ya habíamos definido. 
 p + geom_point(aes(population, total))
-
+#las capas geometricas se pueden poner una sobre otra
 #Capas--------------
 #ggplot(aes(X,Y, condición= variable))
 p + geom_point(aes(population, total)) +
    geom_text(aes(population, total, label = abb))
-
+#el eje x es population, el eje y es total
 #Más argumentos estéticos. 
 #size, cambia el tamaño de las figuras, pero debe ir porfuera del primer
 #argumento estético definido.
@@ -84,7 +105,7 @@ p + geom_point(size = 3) +
 #Vamos a definir nuevas características locales...
 #simplemente declaramos nuevos parámetros. 
 p + geom_point(size = 3) +
-   geom_text(aes(x = 10, y = 800, label = "Hello there!"))
+   geom_text(aes(x = 10, y = 800, label = "aespa"))
 
 #Escalas------------
 # Primero, las escalas que queremos están en escala logarítmica. 
