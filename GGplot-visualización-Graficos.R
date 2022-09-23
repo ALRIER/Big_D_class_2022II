@@ -12,6 +12,7 @@ data(heights)
 data(murders)
 data(gapminder)
 
+
 plot(gapminder$life_expectancy)
 
 plot(gap$fertility)
@@ -23,6 +24,7 @@ boxplot(gap$population)
 boxplot(gap$year)
 
 plot(mtcars)
+library(psych)
 corPlot(cor(mtcars))
 #Método 1
 mtcars %>% 
@@ -49,7 +51,10 @@ mtcars %>%
    corrplot(method = "square",
             title = "method = 'square'")
 #ggplot básico
-library(ggplot2)
+library("ggplot2")
+
+dev.off()   #para cuando hayan problemas con los gráficos
+
 #el plot más básico. 
 ggplot()
 #???
