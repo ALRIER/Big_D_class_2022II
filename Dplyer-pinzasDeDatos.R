@@ -60,7 +60,7 @@ library(NHANES)
 data(NHANES)
 data(heights)
 data(murders)
-
+str(murders)
 sj = heights %>%
    filter(sex == "Female") %>%
    summarize(average = mean(height), standard_deviation = sd(height))
@@ -157,14 +157,14 @@ gapminder %>%
    )
 
 '''o podria hacerlo mucho mas facil, asi:'''
-gap %>%
+
+jr=gap %>%
    group_by(year)%>%
-   summarise(across(c(life_expectancy,population, gdp),
-                    list(min, max, mean)))
+   dplyr::summarise(across(c(life_expectancy),
+                           list(min, max, mean)))
+   
 
-gap %>% summarise(across(starts_with ("Canada")))
                             
-
 
 
 
