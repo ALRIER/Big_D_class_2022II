@@ -99,11 +99,14 @@ Por ejemplo, puede mostrar solo la fila de Nueva York así:
    
    murders %>%
    filter(state == "New York")
+
 Puede usar otros vectores lógicos para filtrar filas.
 
 Utilice filter para mostrar los cinco estados con las tasas de asesinatos más altas.
 Después de añadir la tasa y el rango de asesinatos creen una variable nueva llamada, "filtro1".
 Recuerden que pueden filtrar basándose en la columna rank.
+
+
 
 5. Podemos eliminar filas usando el operador !=. 
 Por ejemplo, para eliminar Florida, haríamos esto:
