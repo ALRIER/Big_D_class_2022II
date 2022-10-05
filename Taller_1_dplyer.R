@@ -13,15 +13,15 @@ que viene prediseñado dentro de un paquete o en la base de R la orden es--> dat
 
 2. Examine el set de datos... qué orden es más adecuada y por qué,
 justifiquen su respuesta al final de esta pregunta?
-   A. head(co2)
+A. head(co2)
 B. View(co2)
 C. print(co2)
 D. str(co2)
-
+rank
 3. Qué comando me ayuda a conocer un reporte de mi dataframe... tipo de variables,
 tamaño del dataframe, tipo de columnas, entre otros y por qué,
 justifiquen su respuesta al final de esta pregunta?
-   A. str(co2)
+A. str(co2)
 B. class(co2)
 C. length(co2)
 D. squeeze(co2)
@@ -163,8 +163,7 @@ gapminder y otra para heights.
 creados en el punto anteriór (para este punto tomen como referencia el punto
                               8).
 
-
-6. Para crear el diagrama de dispersión, agregamos una capa con geom_point. 
+13. Para crear el diagrama de dispersión, agregamos una capa con geom_point. 
 Los mapeos estéticos requieren que definamos las variables del eje-x 
 y del eje-y, respectivamente. Entonces el código se ve así:
    
@@ -178,5 +177,15 @@ Llena el espacio con los nombres correctos de las variables.
    punto 11) --> recuerden que deberán crear 2 gráfias diferentes, una para 
 gapminder y otra para heights.
 
-..
-.
+14. Bien, hemos generado dos objetos gráficos diferentes, uno para gapminder y otro para heights. Nuestra
+labor ahora deberá ser la de buscar un cambio para la geometría de los gráficos. 
+
+Recordemos que el cambio de la geometría dependerá totalmente del tipo de valor con el que estemos
+trabajando, así variables continuas individuales responderán histogramas o boxplots, pero un cruce de 
+variables responderá a un grafico de disperción como el geom_poin, pero también puede responder bien
+a otro tipo de geometíras. 
+
+Por favor experimenta con las posibilidades, al escribir geom; R automáticamente te dará una lista de
+posibilidades de geometrías posibles. 
+
+15. Bien, hemos practicado diferentes geometrías, diferentes cambios de variables, vamos por algunas 
