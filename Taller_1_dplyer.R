@@ -188,4 +188,19 @@ a otro tipo de geometíras.
 Por favor experimenta con las posibilidades, al escribir geom; R automáticamente te dará una lista de
 posibilidades de geometrías posibles. 
 
-15. Bien, hemos practicado diferentes geometrías, diferentes cambios de variables, vamos por algunas 
+15. Ahora vamos a agregar una capa que filtre nuestras varibles. 
+teniendo en cuenta que en el punto 8 delimité p, ahora, usaré 
+este argumento para trabajar sobre esta base. 
+
+   p +
+   geom_point(aes(population, state, colour= state))
+
+Así, he usado el argumento geométrico de puntos definiendo
+como argumentos estéticos la variable población y
+estado, pero además, he dado un filtro de color para la variable estado. 
+
+Ahora ustedes, traten de crear agunos filtros en base a las variables que 
+definieron para sus variables p1 y p2 usando los diferentes argumentos 
+estéticos (alpha, colour, fill, group, shape, size, stroke)
+
+
