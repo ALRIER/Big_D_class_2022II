@@ -8,7 +8,9 @@ data(murders)
 data(gapminder)
 data(na_example)
 
-1. Listo
+1. Carguen el set de datos co2 que viene incluido en la base de R. Recuerden para cargar un set de datos
+que viene prediseñado dentro de un paquete o en la base de R la orden es--> data(nombre del database). Listo
+
 2. Examine el set de datos... qué orden es más adecuada y por qué,
 justifiquen su respuesta al final de esta pregunta?
 A. head(co2)
@@ -38,13 +40,8 @@ le da los rangos de mayor a menor. Usen la función mutate para añadir una colu
 rank que contiene el rango de la tasa de asesinatos de mayor a menor.
 Asegúrense de redefinir murders para poder seguir usando esta variable.
 
-ascendente = rank(-murders)
-
 FALTA
 ascendente = sort(murders)
-
-descendente = forbes %>% 
-   arrange(desc(ventas))
 
 5. Con dplyr, podemos usar select para mostrar solo ciertas columnas.
 Por ejemplo, con este código solo mostraríamos los estados y los tamaños de población:
@@ -104,12 +101,20 @@ Utilice filter para mostrar los cinco estados con las tasas de asesinatos más a
 Después de añadir la tasa y el rango de asesinatos creen una variable nueva llamada, "filtro1".
 Recuerden que pueden filtrar basándose en la columna rank.
 
-filtro1= murders %>% 
-   filter(state == "California") %>%
-   summarize(range = range(total)) %>% 
-   mutate(filter(state == "Texas") %>%
-             summarize(range = range(total)))
+a= murders %>% 
+   filter(state == "California")
+b= murders %>% 
+   filter(state == "Texas")
+c= murders %>% 
+   filter(state == "Florida")
+d= murders %>% 
+   filter(state == "New York")
+e= murders %>% 
+   filter(state == "Pennsylvania")
 
+filtro1= murders%>%
+      filter(state %in% c("New York", "Texas", "Florida", "Pennsylvania", "California"))
+   
 9. Podemos eliminar filas usando el operador !=. 
 Por ejemplo, para eliminar Florida, haríamos esto:
    
@@ -124,7 +129,7 @@ los estados del sur.(La región del Sur, que abarca desde Virginia al norte
 ¿Cuántos estados hay en esta categoría?
    Puede usar la función nrow para esto.
 
-6. También podemos usar %in% para filtrar con dplyr. 
+10. También podemos usar %in% para filtrar con dplyr. 
 Por lo tanto, pueden ver los datos de Nueva York y Texas de esta manera:
    
    murders%>%
@@ -135,22 +140,35 @@ Cree un nuevo data frame llamado murders_nw sólo con los estados del norte
    Rhode Island, Vermont y Wisconsin) .
 ¿Cuántos estados hay en esta categoría?, 
 
+murders_nw= data.frame(murders%>%
+                          filter(state %in% c("Connecticut", "Illinois", "Indiana", "Iowa", "Maine", "Massachusetts", "Míchigan",
+                                              "Minnesota", "Nuevo Hampshire", "Nueva Jersey", "Nueva York", "Ohio", "Pensilvania",
+                                              "Rhode Island", "Vermont", "Wisconsin"))) 
+filtro2= murders_nw
+filtro2 %>% count(state)
+
 guarden el filtro  en una nueva variable llamada "filtro2"
 
-7. Una vez creada la variable, vamos a organizar la columna total en orden 
+11. Una vez creada la variable, vamos a organizar la columna total en orden 
 descendente usando el comando arrange y en base a ella crearemos una nueva
 columna llamada muertes_prom que nos dé como resultado la media del total, 
 no olviden redefinir la variable filtro2 para que el resultado quede guardado ahí.
 
-
-8. Con ggplot2, los gráficos se pueden guardar como objetos. 
+muertes_prom= filtro2 %>% arrange(desc(total))
+muertes_prom2= muertes_prom %>% summarize(average = mean(total)
+                           
+12. Con ggplot2, los gráficos se pueden guardar como objetos. 
 Por ejemplo, podemos asociar un set de datos con un objeto de gráfico así:
    p <- ggplot(data = murders)
 que es lo mismo que (usando tuberías):
    p <- murders %>% ggplot()
 
 ¿Cuál es la clase del objeto p? (como gúia pueden referirse al punto 3)
-9. Recuerde que para imprimir un objeto puede usar el comando print
+
+str(p)
+El objeto P es una lista
+
+13. Recuerde que para imprimir un objeto puede usar el comando print
 o simplemente escribir el objeto. 
 Imprimamos el objeto p definido en el ejercicio 8 y describe lo que ves.
 
@@ -198,3 +216,10 @@ y del eje-y, respectivamente. Entonces el código se ve así:
    
    murders %>% ggplot(aes(x = , y = )) +
    geom_point()
+
+PERO!!! tenemos que definir las dos variables x e y. 
+Llena el espacio con los nombres correctos de las variables. 
+(o sea, remplacemos los nombres con unos pertenecientes a 
+   variables que gusten y que vengan de los filtros creados en el 
+   punto 11) --> recuerden que deberán crear 2 gráfias diferentes, una para 
+gapminder y otra para heights.
