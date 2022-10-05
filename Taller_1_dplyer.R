@@ -163,8 +163,7 @@ gapminder y otra para heights.
 creados en el punto anteriór (para este punto tomen como referencia el punto
                               8).
 
-
-6. Para crear el diagrama de dispersión, agregamos una capa con geom_point. 
+13. Para crear el diagrama de dispersión, agregamos una capa con geom_point. 
 Los mapeos estéticos requieren que definamos las variables del eje-x 
 y del eje-y, respectivamente. Entonces el código se ve así:
    
@@ -177,3 +176,29 @@ Llena el espacio con los nombres correctos de las variables.
    variables que gusten y que vengan de los filtros creados en el 
    punto 11) --> recuerden que deberán crear 2 gráfias diferentes, una para 
 gapminder y otra para heights.
+
+14. Bien, hemos generado dos objetos gráficos diferentes, uno para gapminder y otro para heights. Nuestra
+labor ahora deberá ser la de buscar un cambio para la geometría de los gráficos. 
+
+Recordemos que el cambio de la geometría dependerá totalmente del tipo de valor con el que estemos
+trabajando, así variables continuas individuales responderán histogramas o boxplots, pero un cruce de 
+variables responderá a un grafico de disperción como el geom_poin, pero también puede responder bien
+a otro tipo de geometíras. 
+
+Por favor experimenta con las posibilidades, al escribir geom; R automáticamente te dará una lista de
+posibilidades de geometrías posibles. 
+
+15. Ahora vamos a agregar una capa que filtre nuestras varibles. 
+teniendo en cuenta que en el punto 8 delimité p, ahora, usaré 
+este argumento para trabajar sobre esta base. 
+
+p +
+   geom_point(aes(population, state, colour= state))
+
+Así, he usado el argumento geométrico de puntos definiendo
+como argumentos estéticos la variable población y
+estado, pero además, he dado un filtro de color para la variable estado. 
+
+Ahora ustedes, traten de crear agunos filtros en base a las variables que 
+definieron para sus variables p1 y p2 usando los diferentes argumentos 
+estéticos (alpha, colour, fill, group, shape, size, stroke)
