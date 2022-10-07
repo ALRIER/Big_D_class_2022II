@@ -42,6 +42,8 @@ le da los rangos de mayor a menor. Usen la función mutate para añadir una colu
 rank que contiene el rango de la tasa de asesinatos de mayor a menor.
 Asegúrense de redefinir murders para poder seguir usando esta variable.
 
+desc = murders %>% arrange(desc(total))
+
 rank(murders-murders)
 
 3. Con dplyr, podemos usar select para mostrar solo ciertas columnas.
@@ -55,16 +57,21 @@ Utilicen select para mostrar los nombres de los estados y las abreviaturas en mu
 No redefinan murders, solo muestren los resultados y guarden estas columnas en una variable
 llamada abreviaturas.
 
-abreviatura<-(murders %>%
+abreviatura=murders %>%
    select(state, abb)%>%
    head()
-)
+
 print(abreviatura)
 
 
-4. En el ejercicio 2 crearon una variable llamada rank en la que asignaron el rango de muestres
+6. En el ejercicio 2 crearon una variable llamada desc en la que asignaron el rango de muestres
 organizadas de mayor a menor, extráigan esta variable del dataset total y agréguenla a la variable
 abreviaturas.
+
+tot = murders %>% 
+   select(total)
+
+af = data.frame(tot,desc)
 
 Qué pasó?
    A. Todo perfecto, ya está hecho.
@@ -107,11 +114,13 @@ Después de añadir la tasa y el rango de asesinatos creen una variable nueva ll
 Recuerden que pueden filtrar basándose en la columna rank.
 
 
+filtro1=murders %>% 
+   filter(state %in% c("New York", "Texas", "Florida", "Pennsylvania", "California"))
 
 5. Podemos eliminar filas usando el operador !=. 
 Por ejemplo, para eliminar Florida, haríamos esto:
    
-   no_florida <- 
+   no_florida <- murders %>% 
    filter(state != "Florida")
 
 Cree un nuevo data frame con el nombre no_south que elimina
@@ -121,6 +130,8 @@ los estados del sur.(La región del Sur, que abarca desde Virginia al norte
                      Louisiana, Mississippi, Tennessee y Virginia Occidental.)
 ¿Cuántos estados hay en esta categoría?
    Puede usar la función nrow para esto.
+
+no_south= murders %>% filter(region !="South")
 
 6. También podemos usar %in% para filtrar con dplyr. 
 Por lo tanto, pueden ver los datos de Nueva York y Texas de esta manera:
@@ -133,12 +144,23 @@ Cree un nuevo data frame llamado murders_nw sólo con los estados del norte
    Rhode Island, Vermont y Wisconsin) .
 ¿Cuántos estados hay en esta categoría?, 
 
+murders_nw= data.frame(murders %>% 
+                          filter(satte %in% c("Connecticut", "Illinois", "Indiana", "Iowa", "Maine", "Massachusetts", "Míchigan",
+                       "Minnesota", "Nuevo Hampshire", "Nueva Jersey", "Nueva York", "Ohio", "Pensilvania",
+                       "Rhode Island", "Vermont", "Wisconsin")
+                       
+filtro2= murders_nw
+filtro2 %>% dplyr
+
 guarden el filtro  en una nueva variable llamada "filtro2"
 
-7. Una vez creada la variable, vamos a organizar la columna total en orden 
+11. Una vez creada la variable, vamos a organizar la columna total en orden 
 descendente usando el comando arrange y en base a ella crearemos una nueva
 columna llamada muertes_prom que nos dé como resultado la media del total, 
 no olviden redefinir la variable filtro2 para que el resultado quede guardado ahí.
+
+muertes_prom= filtro2 %>% arrange(desc(total)) %>% 
+   summarize(average=mean(total))
 
 
 8. Con ggplot2, los gráficos se pueden guardar como objetos. 
@@ -148,6 +170,8 @@ que es lo mismo que (usando tuberías):
    p <- murders %>% ggplot()
 
 ¿Cuál es la clase del objeto p? (como gúia pueden referirse al punto 3)
+
+
 9. Recuerde que para imprimir un objeto puede usar el comando print
 o simplemente escribir el objeto. 
 Imprimamos el objeto p definido en el ejercicio 8 y describe lo que ves.
@@ -162,6 +186,9 @@ D.Un histograma.
 Por favor, toma el set de datos heights y guardenlo como una variable tipo dataframe, 
 lo mismo deberán hacer con gapminder, recuerden el comando útil es as.dataframe().
 Pueden guardarlos con el mismo nombre.  
+
+as.data.frame(heights)
+as.data.frame(gapminder)
 
 11. Usando la función:
    
