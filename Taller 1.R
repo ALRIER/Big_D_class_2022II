@@ -187,8 +187,15 @@ Por favor, toma el set de datos heights y guardenlo como una variable tipo dataf
 lo mismo deberán hacer con gapminder, recuerden el comando útil es as.dataframe().
 Pueden guardarlos con el mismo nombre.  
 
-as.data.frame(heights)
-as.data.frame(gapminder)
+h=as.data.frame(heights)
+g=as.data.frame(gapminder)
+
+i=as_tibble(heights)
+k=as_tibble(gapminder)
+
+print(h)
+print(i)
+
 
 11. Usando la función:
    
