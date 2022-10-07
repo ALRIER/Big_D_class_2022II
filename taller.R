@@ -14,9 +14,9 @@ que viene prediseñado dentro de un paquete o en la base de R la orden es--> dat
 2. Examine el set de datos... qué orden es más adecuada y por qué,
 justifiquen su respuesta al final de esta pregunta?
 A. head(co2)
-B. View(co2) X 
+B. View(co2) 
 C. print(co2)
-D. str(co2)
+D. str(co2) X
 
 El orden más adecuado para examinar el set de datos es el comando "view", 
 porque este nos permite observar todos los datos que contiene el set, 
@@ -39,9 +39,10 @@ la variable "co2" está usando variables númericas y tiene una longitud de 468 
 le da los rangos de mayor a menor. Usen la función mutate para añadir una columna
 rank que contiene el rango de la tasa de asesinatos de mayor a menor.
 Asegúrense de redefinir murders para poder seguir usando esta variable.
-
+#se puede usar arrange 
 FALTA
-ascendente = sort(murders)
+ascendente= murders %>% arrange (total)
+descen= murders %>% arrange(desc(total))
 
 5. Con dplyr, podemos usar select para mostrar solo ciertas columnas.
 Por ejemplo, con este código solo mostraríamos los estados y los tamaños de población:
@@ -62,8 +63,14 @@ abreviaturas = murders %>%
 organizadas de mayor a menor, extráigan esta variable del dataset total y agréguenla a la variable
 abreviaturas.
 
+ad= murders %>% 
+   select(total)
+
+af= data.frame(ad,descen)
+descen= murders %>% arrange(desc(total))
+
 Qué pasó?
-   A. Todo perfecto, ya está hecho.
+   A. Todo perfecto, ya está hecho. X
 B. No se puede, los dataframes son de tamaños diferentes.
 C. Los dataframes son de diferente tamaño, pero pudimos lograrlo.
 D. A y B son correctas.
@@ -118,7 +125,7 @@ filtro1= murders%>%
 9. Podemos eliminar filas usando el operador !=. 
 Por ejemplo, para eliminar Florida, haríamos esto:
    
-   no_florida <- 
+   no_florida <- murders %>%  
    filter(state != "Florida")
 
 Cree un nuevo data frame con el nombre no_south que elimina
@@ -129,6 +136,8 @@ los estados del sur.(La región del Sur, que abarca desde Virginia al norte
 ¿Cuántos estados hay en esta categoría?
    Puede usar la función nrow para esto.
 
+no_south= murders %>% filter(region != "South")
+                                
 10. También podemos usar %in% para filtrar con dplyr. 
 Por lo tanto, pueden ver los datos de Nueva York y Texas de esta manera:
    
@@ -145,7 +154,7 @@ murders_nw= data.frame(murders%>%
                                               "Minnesota", "Nuevo Hampshire", "Nueva Jersey", "Nueva York", "Ohio", "Pensilvania",
                                               "Rhode Island", "Vermont", "Wisconsin"))) 
 filtro2= murders_nw
-filtro2 %>% count(state)
+filtro2 %>% dplyr::nrow (state) FALTA
 
 guarden el filtro  en una nueva variable llamada "filtro2"
 
@@ -154,8 +163,8 @@ descendente usando el comando arrange y en base a ella crearemos una nueva
 columna llamada muertes_prom que nos dé como resultado la media del total, 
 no olviden redefinir la variable filtro2 para que el resultado quede guardado ahí.
 
-muertes_prom= filtro2 %>% arrange(desc(total))
-muertes_prom2= muertes_prom %>% summarize(average = mean(total)
+muertes_prom= filtro2 %>% arrange(desc(total)) %>%
+   summarize(average = mean(total))
                            
 12. Con ggplot2, los gráficos se pueden guardar como objetos. 
 Por ejemplo, podemos asociar un set de datos con un objeto de gráfico así:
@@ -166,7 +175,7 @@ que es lo mismo que (usando tuberías):
 ¿Cuál es la clase del objeto p? (como gúia pueden referirse al punto 3)
 
 str(p)
-El objeto P es una lista
+class(p)
 
 dev.off()
 ggplot()
@@ -174,6 +183,8 @@ ggplot()
 13. Recuerde que para imprimir un objeto puede usar el comando print
 o simplemente escribir el objeto. 
 Imprimamos el objeto p definido en el ejercicio 8 y describe lo que ves.
+
+print(p)
 
 A.No pasa nada.
 B.Una gráfico de pizarra en blanco (como hojas de papel calcante). X
@@ -186,8 +197,14 @@ Por favor, toma el set de datos heights y guardenlo como una variable tipo dataf
 lo mismo deberán hacer con gapminder, recuerden el comando útil es as.dataframe().
 Pueden guardarlos con el mismo nombre.  
 
-as.data.frame(heights)
-as.data.frame(gapminder)
+h= as.data.frame(heights)
+g= as.data.frame(gapminder)
+
+i= as_tibble(heights)
+k= as_tibble(gapminder)
+
+print(h)
+print(i)
 
 15. Usando la función:
    
