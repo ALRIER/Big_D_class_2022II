@@ -204,7 +204,7 @@ i= as_tibble(heights)
 k= as_tibble(gapminder)
 
 print(h)
-print(i)
+print(k)
 
 15. Usando la función:
    
@@ -252,7 +252,7 @@ creados en el punto anteriór (para este punto tomen como referencia el punto
 Los mapeos estéticos requieren que definamos las variables del eje-x 
 y del eje-y, respectivamente. Entonces el código se ve así:
    
-   murders %>% ggplot(aes(x = , y = )) +
+   murders %>% ggplot(aes(x = murders$population, y = murders$total)) +
    geom_point()
 
 PERO!!! tenemos que definir las dos variables x e y. 
@@ -261,6 +261,12 @@ Llena el espacio con los nombres correctos de las variables.
    variables que gusten y que vengan de los filtros creados en el 
    punto 11) --> recuerden que deberán crear 2 gráfias diferentes, una para 
 gapminder y otra para heights.
+
+heights %>% ggplot(aes(x = sex, y = height)) +
+   geom_point()
+
+gapminder %>% ggplot(aes(x = fertility, y = region)) +
+   geom_point()
 
 18. Bien, hemos generado dos objetos gráficos diferentes, uno para gapminder y otro para heights. Nuestra
 labor ahora deberá ser la de buscar un cambio para la geometría de los gráficos. 
@@ -272,6 +278,15 @@ a otro tipo de geometíras.
 
 Por favor experimenta con las posibilidades, al escribir geom; R automáticamente te dará una lista de
 posibilidades de geometrías posibles. 
+
+heights %>% ggplot(aes(x = sex, y = height)) +
+   geom_curve()
+
+heights %>% ggplot(aes(x = sex, y = height)) +
+   geom_abline()
+
+heights %>% ggplot(aes(x = sex, y = height)) +
+   geom_area()
 
 19. Ahora vamos a agregar una capa que filtre nuestras varibles. 
 teniendo en cuenta que en el punto 8 delimité p, ahora, usaré 
