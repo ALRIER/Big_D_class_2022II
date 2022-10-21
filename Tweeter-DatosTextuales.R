@@ -13,10 +13,13 @@ setup_twitter_oauth("6gMch1lkCfn3W5PZho3X4jh8W",#api key
 '''Uso el comando searchTwitter para buscar información dentro de twitter con 
 la palabra clave que yo deseo buscar'''
 
-a<- searchTwitter("@FicoGutierrez", n=500)
-a[1:100]
+a<- searchTwitter("ParisHilton", n=50)
+a[1:50]
+
 C1<-searchTwitter('Claudia Lopez', since='2020-03-01', until='2022-03-02', n=200)
+
 C2<-searchTwitter('@ClaudiaLopez', since='2020-03-01', until='2022-03-02', n=200)
+
 C3<-userTimeline('@ClaudiaLopez', since='2020-03-01', n=200)
 C3[1]
 #searchTwitter('Claudia Lopez', resultType = "popular"/"recent")
@@ -35,16 +38,25 @@ create_token(app="Clase_big_data",
              access_token ="284827529-UENNMA2jVHCRBYwcddd6obAAZvaJ0hUVSapYYmwZ",#acces token
              access_secret ="sb1fgjDG9CSugsU5qsWJWkBOvP91FxJmcm7hKCyajrndT")#acces token secret
 
-C4 <- get_timeline(user = "@ClaudiaLopez", n = 200, parse = TRUE, check = FALSE)
-C5 <- get_timeline(user = "@ClaudiaLopez", n = 200, parse = F, check = FALSE)
+C4 <- get_timeline(user = "@ClaudiaLopez", n = 2, parse = TRUE, check = FALSE)
+
+PH <- get_timeline(user = "@ParisHilton", n = 200, parse = T, check = FALSE)
 
 #Sentiment analysis-----------------------------------------
 #Now let learn the sentiment analysis process.... 
 #extract the text only
-te<-Perfiles_Mkt$`Descripcion Vacante`
+text=PH$full_text
+
 #Now lets try data mining algorithms -----------------------------------------------
 #Now i will split the text in words to analyse each one of them separated
-tokens<-tokens(te,what = "word",remove_punct = TRUE,remove_symbols =TRUE,remove_numbers =TRUE,remove_url =TRUE,remove_separators =TRUE,split_hyphens =TRUE)
+tokens<-tokens(text,what = "word",
+               remove_punct = TRUE,
+               remove_symbols =TRUE,
+               remove_numbers =TRUE,
+               remove_url =TRUE,
+               remove_separators =TRUE,
+               split_hyphens =TRUE)
+
 #I will clean the words 
 # Remove mentions, urls, emojis, numbers, punctuation, etc.
 text <- gsub("@\\w+", "", tokens)
