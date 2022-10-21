@@ -17,6 +17,103 @@ packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
               "tidymodels","caret","lmtest", "rtweet")
 
 pkg(packages)
+# Clase 20 de octubre 
+
+
+#stringr--------------------
+
+library(stringr)
+
+#Limpiza de textos: esto quita espacios
+
+str_trim(" Hola, esto es una prueba ")
+
+#Agregar 0s
+
+str_pad("793", width= 5, side= "left", pad="0")
+
+#Buscar algo en un vector.
+
+Amigos= c("Pedro", "Manuel", "Juan", "Camilo")
+
+Amigoss= c("Pedroo", "Manuell", "Juann", "Camiloo")
+
+AAmigos=as.data.frame(Amigos, Amigoss)
+
+S=AAmigos$Amigos
+
+str_detect(S, "Ca")  #deecta un valor dentro de un vector (contro F sofisticado)
+
+#remplazar un valor
+
+amigos=str_replace(Amigos, "Pedro", "Pedrito")
+
+#mayusculas
+
+str_to_upper(Amigos)
+
+#minusculas
+
+str_to_lower(Amigos)
+
+#conteo de elementos
+
+str_length(Amigos)
+
+#str_c -> concatenar elementos.
+
+aMigos=str_c(amigos, collapse = ", ")
+
+#Extrae un subcaracter desde la posición 7 a la 13
+
+str_sub(string=aMigos, start = 7, end = 13)
+
+#Identificación de patrones
+
+#regexr.com -> Identificación de patrones completos de texto
+
+str_extract(string = amigos, pattern = "[aeiou]")
+
+str_extract(string = amigos, pattern = "(Pedrito)")
+
+#al menos 1 vocal en las palabras identificadas. 
+
+str_subset(string = amigos, pattern = "[aeiou]")
+
+#contar número de vocales de algun patron elegido en un vector
+
+str_count(string = amigos, pattern = "[aeiou]")
+
+#Detecta el patrón elegido en un dataframe. 
+
+str_detect(string = amigos, pattern = "[aeiou]")
+
+#Para asignar el nombre de una varable como
+#columna a un mismo dataframe y poder trabajar sobre él.
+
+autoasignado=variable %>%
+   rownames_to_column(var = "nombre de la variable")
+
+#ejemplo
+
+mtcarss=mtcars %>% rownames_to_column(var="Model")
+
+#asignar un id al nombre de columna para trabajarlos como id
+
+mtcarsid=mtcars %>% rowid_to_column(var="Model")
+
+#ejemplo
+
+mtcarss %>% filter(str_detect(string = Model, pattern= "(erc)")) #Remplazar por lo que se quiera definir. 
+
+str_replace(string = amigos, pattern = "[aeiou]",
+            
+            replacement = "primera_vocal")
+
+#separar elementos de un vector. 
+
+new=str_split(string = amigos, pattern = ",")
+
 
 #call my Api Key
 create_token(app="ClasII",
@@ -106,3 +203,12 @@ head(palabras_tristeza_orden, n = 13)
 #positive sentiments and negative ones
 sentimientos_valencia <- (sentimientos_df$negative *-1) + sentimientos_df$positive
 simple_plot(sentimientos_valencia)
+
+
+
+
+
+--------------------
+
+
+
