@@ -24,6 +24,8 @@ pkg(packages)
 library(tidyverse)
 library(twitteR)
 library(rtweet)
+library(syuzhet)
+library(tm)
 
 #Cómo abrir un archivo desde el equipo?
 #Escribo el comando read_csv('dentro la ruta de mi archivo')
