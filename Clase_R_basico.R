@@ -19,6 +19,7 @@ pkg(packages)
 library("tidyverse")
 library("rtweet")
 library("twitteR")
+library(syuzhet)
 #Cómo abrir un archivo desde el equipo?
 #Escribo el comando read_csv('dentro la ruta de mi archivo')
 archivo <- read_csv('/home/alrier/Documentos/movies datasets/WideReleasesCount.csv')

@@ -19,18 +19,20 @@ packages <- c("tidyverse","raster","sf","ggspatial","cluster","factoextra",
 pkg(packages)
 
 #stringr--------------------
-#Limpiza de textos:
-str_trim("   Hola, esto es una prueba   ")
+library(stringr)
+#Limpiza de textos: elimina espacios vacios
+str_trim("     Hola, esto es una prueba  ")
 #Agregar 0s
-str_pad("793", width= 5, side= "left", pad="0")
+str_pad("793", width= 9, side= "left", pad="2")
 #Buscar algo en un vector.
 Amigos= c("Pedro", "Manuel", "Juan", "Camilo")
 Amigoss= c("Pedroo", "Manuell", "Juann", "Camiloo")
 AAmigos=as.data.frame(Amigos, Amigoss)
 S=AAmigos$Amigos
-str_detect(S, "Ca")
+str_detect(S, "Ca")  
 #remplazar un valor
 amigos=str_replace(Amigos, "Pedro", "Pedrito")
+amigos = amigos %>% str_replace("pedro", "Pedrito")
 #mayusculas
 str_to_upper(amigos)
 #minusculas
@@ -51,20 +53,22 @@ str_subset(string = amigos, pattern = "[aeiou]")
 str_count(string = amigos, pattern = "[aeiou]")
 #Detecta el patrón elegido en un dataframe. 
 str_detect(string = amigos, pattern = "[aeiou]")
+a=str_detect(string = amigos, pattern = "(Pedrito)")
+count(a)
 #Para asignar el nombre de una varable como 
 #columna a un mismo dataframe y poder trabajar sobre él.
 autoasignado=variable %>%
    rownames_to_column(var = "nombre de la variable")
 #ejemplo
-mtcarss=mtcars %>% rownames_to_column(var="Model")
+carros=mtcars %>% rownames_to_column(var="Model")
 #asignar un id al nombre de columna para trabajarlos como id
-mtcarsid=mtcars %>% rowid_to_column(var="Model")
+carrosid=mtcars %>% rowid_to_column(var="Model")
 #ejemplo
-mtcarss %>% filter(str_detect(string = Model, pattern= "(erc)"))
+carritos=carros %>% filter(str_detect(string = Model, pattern= "(Toyo)"))
 
 #Remplazar por lo que se quiera definir. 
 str_replace(string = amigos, pattern = "[aeiou]",
-            replacement = "primera_vocal")
+            replacement = "AAAAAAAAAAAAA")
 #separar elementos de un vector. 
 new=str_split(string = amigos, pattern = ",")
 
@@ -77,12 +81,17 @@ create_token(app="ClasII",
              access_secret ="TOoNhDxMcSnxlYBguc7xyIK4bAABnSwoSbiFuFRoERnps")#acces token secret
 
 #Now i will make any call from the tweeter API
-Petro <- get_timeline(user = "@petrogustavo", n = 500, parse = TRUE, check = FALSE)
+SH = get_timeline(user = "@petrogustavo", n = 150, parse = TRUE, check = FALSE)
 #i will extract the text form the dataframe 
-texto<-Petro$text
-texto[1:10]
+texto=SH$text
+texto[1:100]
 #Now i will split the text in words to analyse each one of them separated
-tokens<-tokens(texto,what = "word",remove_punct = TRUE,remove_symbols =TRUE,remove_numbers =TRUE,remove_url =TRUE,remove_separators =TRUE,split_hyphens =TRUE)
+tokens<-tokens(texto,what = "word",remove_punct = TRUE,
+               remove_symbols =TRUE,
+               remove_numbers =TRUE,
+               remove_url =TRUE,
+               remove_separators =TRUE,
+               split_hyphens =TRUE)
 #I will celan the words 
 # Remove mentions, urls, emojis, numbers, punctuations, etc.
 text <- gsub("@\\w+", "", tokens)
@@ -97,6 +106,7 @@ text <- gsub("^\\s+", "", text)
 text <- gsub("\\s+$", "", text)
 text <- gsub("[ |\t]+", " ", text)
 # Put the data to a new column
+#Identificar el Datfix a que paquete pertenece. 
 data_fix["fix_text"] <- text
 head(data_fix$fix_text, 10)
 #Now i will make a second "cleaning" round, just to be sure.
@@ -151,9 +161,9 @@ barplot(
 #you can repeat this process with each emotion you want: fear, disgust,
 #anger, trust, negative, positive, etc. 
 palabras_tristeza <- a[sentimientos_df$sadness> 0]
-palabras_tristeza_orden <- sort(table(unlist(palabras_tristeza)), decreasing = TRUE)
+palabras_tristeza_orden <- sort(table(unlist(palabras_tristeza)),decreasing = TRUE)
 head(palabras_tristeza_orden, n = 13)
-#Now, in a graphic i will draw the way in chich the dialog has changed between 
+#Now, in a graphic i will draw the way in which the dialog has changed between 
 #positive sentiments and negative ones
-sentimientos_valencia <- (sentimientos_df$negative *-1) + sentimientos_df$positive
+sentimientos_valencia <- (sentimientos_df$negative *-1)+sentimientos_df$positive
 simple_plot(sentimientos_valencia)
