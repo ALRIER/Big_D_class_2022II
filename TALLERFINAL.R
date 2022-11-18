@@ -60,6 +60,82 @@ x = gsub(" $", "", x)
 
 a<-gsub("[^\x01-\x7F]", "", x)
 
+discurso <- tolower(a)
+#remove stopwords (quito las stopwords("spanish").)
+discurso <- removeWords(discurso, words = stopwords("spanish"))
+discurso <- removeWords(discurso, words = c("hp2pdfmnfa","@iandresrm","va","https://","@",":",
+                                            "…","t.co/","👁","@christi11079874","📢","jajajajjaja",
+                                            "“","n","cad…","@lafm","plat…",
+                                            "…", "indra","dos","día","🇨🇴",
+                                            "de","la","aos","el","y","las","nes",
+                                            "ser", "jajaja", "unas", "est", "pack", "todava"))
+#Remove punctuation (Nos deshacemos de la puntuación) 
+discurso <- removePunctuation(discurso)
+#Remove numbers (removemos los números) 
+discurso <- removeNumbers(discurso)
+#confirmation
+discurso[1:300]
+#I will create a new vector (Conformo un vector de palabras)
+discurso1 <- Corpus(VectorSource(discurso)) 
+#create a matrix object (organizo el compendio de palabras en un objeto tipo matriz de datos)
+letras<- TermDocumentMatrix(discurso1)
+letrasmatrix <- as.matrix(letras) 
+# hago un vector que va a sumar la repetición de palabras en la matriz y así
+# consigo la frecuencia total de palabras que hay para cada término, despues le digo
+# que las sume y las organice
+vector <- rowSums(letrasmatrix) 
+Vectorr<- sort(vector, decreasing = T)
+#ahora bien, cabe revisar la frecuencia de palabras para así poder identificar 
+# cuales de estas palabras son y cuales de estas palabras no me son útiles por eso 
+# imprimo la matriz antes de que podamos sacar conclusiones del analisis
+# #ver el vector
+view(Vectorr)
+#Inspeccionar la matriz ordenadamente
+Vectorr[1:20]
+# AHORA ES IMPORTANTISIMO: si veo que en el vector de palabras hay algun termino
+# que esté molestando demasiado, la forma mas fácil de eliminarlo es regresar al 
+# corpus y quitarlo arriba con el comando removeWords y repetir los pasos hasta 
+# aquí, pero se debe tener en cuenta que es mejor retroceder y correr todos los
+# comandos de limpeza nuevamente, desde el princpio, es decir, desde
+# aquí discurso <- gsub("[[:cntrl:]]", " ", a) pero ahora incluyendo los terminos
+# que se desea eliminar del comando removeWords
+#transformo todo en un dataframe
+dataletras <- data.frame(word= names(Vectorr),freq=Vectorr)  
+#findFreqTerms(letras, lowfreq=3) 
+#vector <- sort(rowSums(matrix),decreasing=TRUE)
+barplot(dataletras[1:10,]$freq, las = 2, names.arg = dataletras[1:10,]$word, 
+        col = brewer.pal(n = 8, name = "Set3"), main ="Pabalras mas frecuentes",
+        ylab = "Frecuencia de palabras") 
+
+
+dataletras[1:30, ] %>%
+   ggplot(aes(word, freq)) +
+   geom_bar(stat = "identity", color = "black", fill = "#87CEFA") +
+   geom_text(aes(hjust = 1.3, label = freq))+ 
+   coord_flip() + 
+   labs(title = "Diez palabras más frecuentes",  x = "Palabras", y = "Número de usos")
+
+
+dataletras %>%
+   mutate(perc = (frec/sum(frec))*100) %>%
+   .[1:10, ] %>%
+   ggplot(aes(palabra, perc)) +
+   geom_bar(stat = "identity", color = "black", fill = "#87CEFA") +
+   geom_text(aes(hjust = 1.3, label = round(perc, 2))) + 
+   coord_flip() +
+   labs(title = "Diez palabras más frecuentes en Niebla", x = "Palabras", y = "Porcentaje de uso")
+#nube de palabras sin frecuencias mínimas
+wordcloud(
+   words = dataletras$word, freq = dataletras$freq,
+   max.words = 80, 
+   random.order = F, 
+   colors=brewer.pal(name = "Dark2", n = 8)
+)
+#nube de palabras con frecuencias mónimas
+wordcloud(words = dataletras$word, freq = dataletras$freq, min.freq = 2,
+          max.words=30, random.order=FALSE, rot.per=0.35,  
+          colors=brewer.pal(7, "Dark2"), scale=c(3.5,1.25))
+
 sentimientos_beer <- get_nrc_sentiment(a, lang="spanish")
 
 head(sentimientos_beer)
