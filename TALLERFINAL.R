@@ -69,7 +69,7 @@ summary<-summary(sentimientos_beer)
 barplot(
    colSums(prop.table(sentimientos_beer[, 1:8])),
    space = 0.2,
-   horiz = F,
+   horiz = T,
    las = 1,
    cex.names = 0.7,
    col = brewer.pal(n = 8, name = "Set3"),
