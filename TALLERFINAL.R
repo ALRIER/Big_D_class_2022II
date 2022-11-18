@@ -61,14 +61,17 @@ x = gsub(" $", "", x)
 a<-gsub("[^\x01-\x7F]", "", x)
 
 discurso <- tolower(a)
-#remove stopwords (quito las stopwords("spanish").)
+
 discurso <- removeWords(discurso, words = stopwords("spanish"))
 discurso <- removeWords(discurso, words = c("hp2pdfmnfa","@iandresrm","va","https://","@",":",
                                             "…","t.co/","👁","@christi11079874","📢","jajajajjaja",
                                             "“","n","cad…","@lafm","plat…",
                                             "…", "indra","dos","día","🇨🇴",
                                             "de","la","aos","el","y","las","nes",
-                                            "ser", "jajaja", "unas", "est", "pack", "todava"))
+                                            "ser", "jajaja", "unas", "est", "pack", "todava", "jajaja", "pas", "sal", "ltima", "termin", "qued", "chocolate", "dicen", "mientras", "dijo", "mande", "mano", "leche", "fro", "jaja", "ultra", "estn", "haba"))
+
+
+
 #Remove punctuation (Nos deshacemos de la puntuación) 
 discurso <- removePunctuation(discurso)
 #Remove numbers (removemos los números) 
@@ -100,7 +103,7 @@ Vectorr[1:20]
 # aquí discurso <- gsub("[[:cntrl:]]", " ", a) pero ahora incluyendo los terminos
 # que se desea eliminar del comando removeWords
 #transformo todo en un dataframe
-dataletras <- data.frame(word= names(Vectorr),freq=Vectorr)  
+dataletras <- data.frame(word= names(Vectorr),freq=Vectorr)
 #findFreqTerms(letras, lowfreq=3) 
 #vector <- sort(rowSums(matrix),decreasing=TRUE)
 barplot(dataletras[1:10,]$freq, las = 2, names.arg = dataletras[1:10,]$word, 
@@ -145,7 +148,7 @@ summary<-summary(sentimientos_beer)
 barplot(
    colSums(prop.table(sentimientos_beer[, 1:8])),
    space = 0.2,
-   horiz = T,
+   horiz = F,
    las = 1,
    cex.names = 0.7,
    col = brewer.pal(n = 8, name = "Set3"),
@@ -156,7 +159,7 @@ barplot(
 barplot(
    colSums(prop.table(sentimientos_beer[, 9:10])),
    space = 0.2,
-   horiz = T,
+   horiz = F,
    las = 1,
    cex.names = 0.7,
    col = brewer.pal(n = 3, name = "Set3"),
