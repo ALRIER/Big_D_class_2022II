@@ -60,65 +60,37 @@ x = gsub(" $", "", x)
 
 a<-gsub("[^\x01-\x7F]", "", x)
 
-discurso <- tolower(a)
+sentimientos_beer <- get_nrc_sentiment(a, lang="spanish")
 
-discurso <- removeWords(discurso, words = stopwords("spanish"))
+head(sentimientos_beer)
 
-discurso <- removeWords(discurso, words = c("hp2pdfmnfa","@iandresrm","va","https://","@",":",
-                                            "…","t.co/","👁","@christi11079874","📢","jajajajjaja",
-                                            "“","n","cad…","@lafm","plat…",
-                                            "…", "indra","dos","día","🇨🇴",
-                                            "de","la","aos","el","y","las","nes",
-                                            "ser"))
+summary<-summary(sentimientos_beer)
 
-discurso <- removePunctuation(discurso)
+barplot(
+   colSums(prop.table(sentimientos_beer[, 1:8])),
+   space = 0.2,
+   horiz = F,
+   las = 1,
+   cex.names = 0.7,
+   col = brewer.pal(n = 8, name = "Set3"),
+   main = "8 diferentes emociones",
+   sub = "Emociones",
+   xlab="emociones", ylab = NULL)
 
-discurso <- removeNumbers(discurso)
+barplot(
+   colSums(prop.table(sentimientos_beer[, 9:10])),
+   space = 0.2,
+   horiz = T,
+   las = 1,
+   cex.names = 0.7,
+   col = brewer.pal(n = 3, name = "Set3"),
+   main = "Sentimiento positivo y negativo",
+   sub = "Sentimientos",
+   xlab="emociones", ylab = NULL)
 
-discurso1 <- Corpus(VectorSource(discurso)) 
+palabras_tristeza <- a[sentimientos_df$sadness> 0]
+palabras_tristeza_orden <- sort(table(unlist(palabras_tristeza)), decreasing = TRUE)
+head(palabras_tristeza_orden, n = 13)
 
-letras<- TermDocumentMatrix(discurso1)
-letrasmatrix <- as.matrix(letras) 
-
-vector <- rowSums(letrasmatrix) 
-Vectorr<- sort(vector, decreasing = T)
-
-view(Vectorr)
-Vectorr[1:20]
-
-dataletras <- data.frame(word= names(Vectorr),freq=Vectorr)  
-
-barplot(dataletras[1:10,]$freq, las = 2, names.arg = dataletras[1:10,]$word, 
-        col = brewer.pal(n = 8, name = "Set3"), main ="Pabalras mas frecuentes",
-        ylab = "Frecuencia de palabras") 
-
-dataletras[1:30, ] %>%
-   ggplot(aes(word, freq)) +
-   geom_bar(stat = "identity", color = "black", fill = "#87CEFA") +
-   geom_text(aes(hjust = 1.3, label = freq))+ 
-   coord_flip() + 
-   labs(title = "Diez palabras más frecuentes",  x = "Palabras", y = "Número de usos")
-
-
-dataletras %>%
-   mutate(perc = (frec/sum(frec))*100) %>%
-   .[1:10, ] %>%
-   ggplot(aes(palabra, perc)) +
-   geom_bar(stat = "identity", color = "black", fill = "#87CEFA") +
-   geom_text(aes(hjust = 1.3, label = round(perc, 2))) + 
-   coord_flip() +
-   labs(title = "Diez palabras más frecuentes en Niebla", x = "Palabras", y = "Porcentaje de uso")
-
-wordcloud(
-   words = dataletras$word, freq = dataletras$freq,
-   max.words = 80, 
-   random.order = F, 
-   colors=brewer.pal(name = "Dark2", n = 8)
-)
-
-wordcloud(words = dataletras$word, freq = dataletras$freq, min.freq = 2,
-          max.words=30, random.order=FALSE, rot.per=0.35,  
-          colors=brewer.pal(7, "Dark2"), scale=c(3.5,1.25))
-
-findAssocs(letras, terms = c("fiesta", "amigos",
-                             "mundial"), corlimit = .25)
+sentimientos_valencia <- (sentimientos_df$negative *-1) + sentimientos_df$positive
+simple_plot(sentimientos_valencia)
