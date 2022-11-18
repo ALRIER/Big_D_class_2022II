@@ -98,3 +98,27 @@ dataletras[1:30, ] %>%
    geom_text(aes(hjust = 1.3, label = freq))+ 
    coord_flip() + 
    labs(title = "Diez palabras más frecuentes",  x = "Palabras", y = "Número de usos")
+
+
+dataletras %>%
+   mutate(perc = (frec/sum(frec))*100) %>%
+   .[1:10, ] %>%
+   ggplot(aes(palabra, perc)) +
+   geom_bar(stat = "identity", color = "black", fill = "#87CEFA") +
+   geom_text(aes(hjust = 1.3, label = round(perc, 2))) + 
+   coord_flip() +
+   labs(title = "Diez palabras más frecuentes en Niebla", x = "Palabras", y = "Porcentaje de uso")
+
+wordcloud(
+   words = dataletras$word, freq = dataletras$freq,
+   max.words = 80, 
+   random.order = F, 
+   colors=brewer.pal(name = "Dark2", n = 8)
+)
+
+wordcloud(words = dataletras$word, freq = dataletras$freq, min.freq = 2,
+          max.words=30, random.order=FALSE, rot.per=0.35,  
+          colors=brewer.pal(7, "Dark2"), scale=c(3.5,1.25))
+
+findAssocs(letras, terms = c("fiesta", "amigos",
+                             "mundial"), corlimit = .25)
