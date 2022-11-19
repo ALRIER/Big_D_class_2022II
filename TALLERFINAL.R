@@ -71,38 +71,19 @@ discurso <- removeWords(discurso, words = c("hp2pdfmnfa","@iandresrm","va","http
                                             "ser", "jajaja", "unas", "est", "pack", "todava", "jajaja", "pas", "sal", "ltima", "termin", "qued", "chocolate", "dicen", "mientras", "dijo", "mande", "mano", "leche", "fro", "jaja", "ultra", "estn", "haba"))
 
 
-
-#Remove punctuation (Nos deshacemos de la puntuación) 
 discurso <- removePunctuation(discurso)
-#Remove numbers (removemos los números) 
 discurso <- removeNumbers(discurso)
-#confirmation
 discurso[1:300]
-#I will create a new vector (Conformo un vector de palabras)
 discurso1 <- Corpus(VectorSource(discurso)) 
-#create a matrix object (organizo el compendio de palabras en un objeto tipo matriz de datos)
 letras<- TermDocumentMatrix(discurso1)
 letrasmatrix <- as.matrix(letras) 
-# hago un vector que va a sumar la repetición de palabras en la matriz y así
-# consigo la frecuencia total de palabras que hay para cada término, despues le digo
-# que las sume y las organice
 vector <- rowSums(letrasmatrix) 
 Vectorr<- sort(vector, decreasing = T)
-#ahora bien, cabe revisar la frecuencia de palabras para así poder identificar 
-# cuales de estas palabras son y cuales de estas palabras no me son útiles por eso 
-# imprimo la matriz antes de que podamos sacar conclusiones del analisis
-# #ver el vector
+
 view(Vectorr)
-#Inspeccionar la matriz ordenadamente
+
 Vectorr[1:20]
-# AHORA ES IMPORTANTISIMO: si veo que en el vector de palabras hay algun termino
-# que esté molestando demasiado, la forma mas fácil de eliminarlo es regresar al 
-# corpus y quitarlo arriba con el comando removeWords y repetir los pasos hasta 
-# aquí, pero se debe tener en cuenta que es mejor retroceder y correr todos los
-# comandos de limpeza nuevamente, desde el princpio, es decir, desde
-# aquí discurso <- gsub("[[:cntrl:]]", " ", a) pero ahora incluyendo los terminos
-# que se desea eliminar del comando removeWords
-#transformo todo en un dataframe
+
 dataletras <- data.frame(word= names(Vectorr),freq=Vectorr)
 #findFreqTerms(letras, lowfreq=3) 
 #vector <- sort(rowSums(matrix),decreasing=TRUE)
@@ -144,6 +125,10 @@ sentimientos_beer <- get_nrc_sentiment(a, lang="spanish")
 head(sentimientos_beer)
 
 summary<-summary(sentimientos_beer)
+
+wordcloud(words = sentimientos_beer, freq = sentimientos_beer, min.freq = 2,
+          max.words=30, random.order=FALSE, rot.per=0.35,  
+          colors=brewer.pal(7, "Dark2"), scale=c(3.5,1.25))
 
 barplot(
    colSums(prop.table(sentimientos_beer[, 1:8])),
